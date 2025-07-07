@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .bundle-container {
+      max-width: 400px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #c346be;
+      margin-bottom: 20px;
+    }
+
+    .option {
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .option.active {
+      border-color: #a03cb7;
+      background-color: #f4e5f2;
+      transform: scale(1.03);
+    }
+
+    .details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option.active .details {
+      max-height: 300px;
+      opacity: 1;
+      pointer-events: auto;
+      margin-top: 10px;
+    }
+
+    .price {
+      font-size: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .note {
+      color: #888;
+      font-size: 12px;
+      text-decoration: line-through;
+    }
+
+    .tag {
+      color: #d563e6;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    select {
+      margin: 5px;
+      padding: 5px;
+      width: 40%;
+    }
+
+    .add-to-cart {
+      background-color: #cf4ab9;
+      color: white;
+      padding: 15px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .shipping {
+      color: #dc55d0;
+      font-size: 14px;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bundle-container">
+    <h2>YAY! It's BOGO</h2>
+
+    <div class="option" data-price="195">
+      <div>1 Pair</div>
+      <div class="price">DKK 195.00</div>
+      <div>50% OFF</div>
+      <div class="details">
+        #1
+        <select onclick="event.stopPropagation()">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select onclick="event.stopPropagation()">
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+        <br />
+        #2
+        <select onclick="event.stopPropagation()">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select onclick="event.stopPropagation()">
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="option active" data-price="345">
+      <div>2 Pair <span class="tag">Most Popular</span></div>
+      <div class="price">DKK 345.00 <span class="note">DKK 195.00</span></div>
+      <div>40% OFF</div>
+      <div class="details">
+        #1
+        <select onclick="event.stopPropagation()">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select onclick="event.stopPropagation()">
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+        <br />
+        #2
+        <select onclick="event.stopPropagation()">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select onclick="event.stopPropagation()">
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="option" data-price="528">
+      <div>3 Pair</div>
+      <div class="price">DKK 528.00</div>
+      <div>60% OFF</div>
+      <div class="details">
+        #1
+        <select onclick="event.stopPropagation()">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select onclick="event.stopPropagation()">
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+        <br />
+        #2
+        <select onclick="event.stopPropagation()">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select onclick="event.stopPropagation()">
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="shipping">Free 2 Day Shipping</div>
+    <div class="total">Total : DKK <span id="total">360.00</span></div>
+    <button class="add-to-cart">+ Add to Cart</button>
+  </div>
+
+  <script>
+    document.querySelectorAll('.option').forEach(option => {
+      option.addEventListener('click', function () {
+        document.querySelectorAll('.option').forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+        const price = parseFloat(this.getAttribute('data-price'));
+        document.getElementById('total').textContent = (price + 15).toFixed(2);
+      });
+    });
+  </script>
+</body>
+
+</html>
